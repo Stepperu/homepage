@@ -55,7 +55,9 @@
         // Display the result
         document.getElementById('currentAge').textContent = `${age} years`;
     }
-    window.onload = getDOB();
+    window.addEventListener("load", () => {
+      getDOB();
+    });
 </script>
 </head>
 <body class="dark-theme github">
