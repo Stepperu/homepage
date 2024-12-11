@@ -38,37 +38,25 @@
     <!-- JavaScript -->
     <script src="/js/smoothscroll.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/main.js" type="text/javascript" charset="utf-8"></script>
-    <script text="text/javascript">
-        function getDOB() {
-            const birth = new Date("2002-10-24") 
-            const dateOfToday = new Date()
-    // Get the values from the input fields
-    const dobInput = birth
-    const currentDateInput = dateOfToday
+    <script>
+    function getDOB() {
+        const dob = new Date("2002-10-24")
+        const currentDate = new Date()
 
-    // Validate if both dates are provided
-    if (!dobInput || !currentDateInput) {
-        alert('Please enter both Date of Birth and Current Date.');
-        return;
+        // Calculate age
+        let age = currentDate.getFullYear() - dob.getFullYear();
+        const monthDifference = currentDate.getMonth() - dob.getMonth();
+    
+        // Adjust age if the birthday hasn't occurred yet this year
+        if (monthDifference < 0 || (monthDifference === 0 && currentDate.getDate() < dob.getDate())) {
+            age--;
+        }
+
+        // Display the result
+        document.getElementById('currentAge').textContent = `${age} years`;
     }
-
-    // Convert input values to Date objects
-    const dob = new Date(dobInput);
-    const currentDate = new Date(currentDateInput);
-
-    // Calculate age
-    let age = currentDate.getFullYear() - dob.getFullYear();
-    const monthDifference = currentDate.getMonth() - dob.getMonth();
-
-    // Adjust age if the birthday hasn't occurred yet this year
-    if (monthDifference < 0 || (monthDifference === 0 && currentDate.getDate() < dob.getDate())) {
-        age--;
-    }
-
-    // Display the result
-    document.getElementById('currentAge').textContent = `${age} years`;
-}
-    </script>
+    window.onload = getDOB();
+</script>
 </head>
 <body class="dark-theme github">
     <div class="fullscreen">
